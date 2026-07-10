@@ -1,0 +1,488 @@
+/* Modern Light Glassmorphism Styling for UrjaPrabandh */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    --card-bg: rgba(255, 255, 255, 0.65);
+    --card-border: rgba(15, 23, 42, 0.08);
+    --glass-blur: blur(16px);
+    
+    /* Optimized Contrast Light Theme Colors */
+    --solar: #0891b2;      /* Cyan */
+    --wind: #1d4ed8;       /* Blue */
+    --biomass: #047857;    /* Green */
+    --battery: #b45309;    /* Amber */
+    --grid: #6d28d9;       /* Purple */
+    --load: #be185d;       /* Pink */
+    
+    --text-main: #0f172a;   /* Slate 900 */
+    --text-muted: #475569;  /* Slate 600 */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background: var(--bg-gradient);
+    color: var(--text-main);
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 2rem;
+}
+
+/* Glassmorphism Container */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--card-border);
+    margin-bottom: 2rem;
+}
+
+.title-area h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: linear-gradient(to right, #0284c7, #6d28d9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.title-area p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+}
+
+.system-status {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.status-badge {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    backdrop-filter: var(--glass-blur);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--biomass);
+    box-shadow: 0 0 10px var(--biomass);
+}
+
+.status-dot.pulse {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(4, 120, 87, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(4, 120, 87, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(4, 120, 87, 0); }
+}
+
+/* Dashboard Grid Layout */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 2rem;
+}
+
+@media (max-width: 1100px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.main-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Glass Cards */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    backdrop-filter: var(--glass-blur);
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+}
+
+.card:hover {
+    border-color: rgba(15, 23, 42, 0.15);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.06);
+}
+
+/* Telemetry Grid */
+.telemetry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+}
+
+.telemetry-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.telemetry-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent, var(--text-muted));
+}
+
+.telemetry-card.solar { --accent: var(--solar); }
+.telemetry-card.wind { --accent: var(--wind); }
+.telemetry-card.biomass { --accent: var(--biomass); }
+.telemetry-card.battery { --accent: var(--battery); }
+.telemetry-card.grid { --accent: var(--grid); }
+.telemetry-card.load { --accent: var(--load); }
+
+.telemetry-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.telemetry-val {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.telemetry-sub {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Grid Outage warning animation */
+.blackout-active {
+    background: rgba(239, 68, 68, 0.05);
+    border-color: rgba(239, 68, 68, 0.3) !important;
+}
+
+/* Schematic Area */
+.schematic-box {
+    min-height: 380px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.schematic-svg {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+}
+
+/* Animated flow lines */
+.flow-line {
+    fill: none;
+    stroke: rgba(15, 23, 42, 0.08);
+    stroke-width: 3;
+    stroke-dasharray: 8 12;
+    stroke-linecap: round;
+}
+
+.flow-line.active {
+    animation: flowDash 25s linear infinite;
+    stroke-width: 4;
+}
+
+.flow-line.solar-flow { stroke: var(--solar); }
+.flow-line.wind-flow { stroke: var(--wind); }
+.flow-line.biomass-flow { stroke: var(--biomass); }
+.flow-line.battery-flow { stroke: var(--battery); }
+.flow-line.grid-flow { stroke: var(--grid); }
+.flow-line.load-flow { stroke: var(--load); }
+
+@keyframes flowDash {
+    to { stroke-dashoffset: -1000; }
+}
+
+/* Interactive Controls Panel */
+.controls-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--card-border);
+    padding-bottom: 0.5rem;
+    color: var(--text-main);
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.control-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+/* Beautiful custom toggle switches */
+.toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(15, 23, 42, 0.03);
+    border: 1px solid var(--card-border);
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.toggle-btn:hover {
+    background: rgba(15, 23, 42, 0.06);
+}
+
+.toggle-switch {
+    width: 40px;
+    height: 20px;
+    background: #94a3b8;
+    border-radius: 20px;
+    position: relative;
+    transition: background 0.3s ease;
+}
+
+.toggle-switch::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.3s ease;
+}
+
+.toggle-btn.active .toggle-switch {
+    background: var(--biomass);
+}
+
+.toggle-btn.active .toggle-switch::after {
+    transform: translateX(20px);
+}
+
+/* Grid Failure Switch */
+.toggle-btn.grid-failure-btn.active .toggle-switch {
+    background: #dc2626;
+}
+
+/* Weather Select Button Grid */
+.weather-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+.weather-btn {
+    background: rgba(15, 23, 42, 0.03);
+    border: 1px solid var(--card-border);
+    padding: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+    text-align: center;
+    font-weight: 500;
+}
+
+.weather-btn:hover {
+    background: rgba(15, 23, 42, 0.06);
+    color: var(--text-main);
+}
+
+.weather-btn.active {
+    background: rgba(2, 132, 199, 0.1);
+    border-color: #0284c7;
+    color: #0284c7;
+    font-weight: 600;
+}
+
+/* Simulation speed controls */
+.speed-controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.speed-btn {
+    flex: 1;
+    background: rgba(15, 23, 42, 0.03);
+    border: 1px solid var(--card-border);
+    padding: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+    text-align: center;
+    font-weight: 500;
+}
+
+.speed-btn.active {
+    background: rgba(109, 40, 217, 0.1);
+    border-color: var(--grid);
+    color: var(--grid);
+    font-weight: 600;
+}
+
+/* Savings and Financial Tracker */
+.savings-metric-box {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.savings-card {
+    flex: 1;
+    min-width: 180px;
+    background: rgba(15, 23, 42, 0.02);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.savings-icon-container {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.savings-icon-container.inr {
+    background: rgba(4, 120, 87, 0.1);
+    color: var(--biomass);
+}
+
+.savings-icon-container.co2 {
+    background: rgba(8, 145, 178, 0.1);
+    color: var(--solar);
+}
+
+.savings-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.savings-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.savings-val {
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+/* Critical warnings area */
+.shedding-alerts {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.alert-item {
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    border: 1px solid transparent;
+}
+
+.alert-item.info {
+    background: rgba(37, 99, 235, 0.08);
+    border-color: rgba(37, 99, 235, 0.15);
+    color: #1d4ed8;
+}
+
+.alert-item.warning {
+    background: rgba(217, 119, 6, 0.08);
+    border-color: rgba(217, 119, 6, 0.15);
+    color: #b45309;
+}
+
+.alert-item.danger {
+    background: rgba(220, 38, 38, 0.08);
+    border-color: rgba(220, 38, 38, 0.15);
+    color: #b91c1c;
+    animation: flashAlert 1s infinite alternate;
+}
+
+@keyframes flashAlert {
+    from { opacity: 0.8; }
+    to { opacity: 1; box-shadow: 0 0 8px rgba(220, 38, 38, 0.2); }
+}
+
+/* Rotating Turbine blades */
+.turbine-blade {
+    transform-origin: 220px 150px; /* Center point of wind turbine hub in SVG */
+}
+.turbine-blade.rotating {
+    animation: spin TurbineSpeed linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

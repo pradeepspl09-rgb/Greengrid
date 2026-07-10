@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@page {
+    size: A4;
+    margin-top: 1.25in;
+    margin-bottom: 1.25in;
+    margin-left: 1.25in;
+    margin-right: 1.25in;
+    @bottom-right {
+        content: counter(page);
+        font-family: 'Tinos', 'Times New Roman', Times, serif;
+        font-size: 12pt;
+    }
+}
+
+body {
+    font-family: 'Tinos', 'Times New Roman', Times, serif;
+    font-size: 14pt;
+    line-height: 2.0; /* Academic double-spacing */
+    color: #000000;
+    background-color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Tinos', 'Times New Roman', Times, serif;
+    color: #000000;
+    font-weight: bold;
+    page-break-after: avoid;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+}
+
+h1 {
+    font-size: 22pt;
+    text-align: center;
+    page-break-before: always; /* Each chapter on a new page */
+}
+
+/* Cover page overrides */
+.cover h1 {
+    page-break-before: avoid !important;
+    margin-top: 1in;
+}
+
+h2 {
+    font-size: 18pt;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 0.3em;
+    page-break-before: always; /* Each sub-chapter on a new page for thesis structure */
+}
+
+h3 {
+    font-size: 15pt;
+    margin-top: 1.2em;
+}
+
+p {
+    margin-bottom: 1.5em;
+    text-align: justify;
+    text-indent: 0.5in; /* Standard paragraph indentation */
+}
+
+li p, blockquote p, .no-indent p, .cover p {
+    text-indent: 0;
+}
+
+ul, ol {
+    margin-left: 2.5em;
+    margin-bottom: 1.5em;
+}
+
+li {
+    margin-bottom: 0.6em;
+    line-height: 1.8;
+}
+
+pre {
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 1.2em;
+    font-size: 10pt;
+    line-height: 1.4;
+    overflow-x: auto;
+    page-break-inside: avoid;
+    margin-bottom: 1.5em;
+    text-indent: 0;
+}
+
+code {
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+    font-size: 10.5pt;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5em;
+    margin-bottom: 2em;
+    page-break-inside: avoid;
+}
+
+th, td {
+    border: 1px solid #000000;
+    padding: 12px;
+    text-align: left;
+    font-size: 12pt;
+}
+
+th {
+    background-color: #f1f5f9;
+    font-weight: bold;
+}
+
+blockquote {
+    border-left: 4px solid #94a3b8;
+    padding-left: 1.5em;
+    margin-left: 0;
+    margin-right: 0;
+    font-style: italic;
+    color: #334155;
+    margin-bottom: 1.5em;
+}
+
+.page-break {
+    page-break-before: always;
+}
+
+.center-text {
+    text-align: center;
+    text-indent: 0;
+}
+
+.signature-space {
+    margin-top: 2in;
+    display: flex;
+    justify-content: space-between;
+}

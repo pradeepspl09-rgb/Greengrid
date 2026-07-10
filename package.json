@@ -1,0 +1,21 @@
+{
+  "name": "greengrid-india",
+  "version": "1.0.0",
+  "description": "GreenGrid India — Smart Community Renewable Energy Microgrid Simulator for Atmanirbhar Bharat",
+  "main": "app.js",
+  "scripts": {
+    "test": "node test_runner.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "renewable-energy",
+    "microgrid",
+    "solar",
+    "wind",
+    "atmanirbhar",
+    "india",
+    "greengrid"
+  ],
+  "author": "Antigravity",
+  "license": "MIT"
+}
